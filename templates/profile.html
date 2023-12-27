@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<section class="profile">
+        <h1 class="heading">    
+            <span>p</span>
+            <span>r</span>
+            <span>o</span>
+            <span>f</span>
+            <span>İ</span>
+            <span>l</span>
+        </h1>
+        <div class="profile-content">
+            <h1 class="profile-title">Bilgilerim</h1><br>
+         <div> 
+            <p>{{ name }} {{ surname }} <a href="#">İsim bilgilerimi değiştir</a></p>
+            <p>{{ email }} <a href="#">E-mail bilgilerimi değiştir</a></p>
+            <p><a>Şifre bilgilerimi değiştir</a></p>
+            <p><a href="{{ url_for('deleteAcc') }}">Hesabımı sil</a></p>
+         </div>
+    </div>
+</section>
+{% endblock %}

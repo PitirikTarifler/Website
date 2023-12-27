@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+    {% block title %} Tarifler {% endblock %}
+    {% block content %}
+    <section class="details">
+        <h1 style="margin-top: 150px;" class="heading">
+            {% for letter in category %}
+                <span>{{ letter }}</span>
+            {% endfor %}
+            <br><br>
+            <span>T</span> 
+            <span>A</span> 
+            <span>R</span> 
+            <span>İ</span> 
+            <span>F</span> 
+            <span>L</span> 
+            <span>E</span> 
+            <span>R</span> 
+            <span>İ</span> 
+        </h1>
+        <div class="cardContainer">
+            {% for recipe in recipes %}
+                <div class="theCard">
+                    <div class="theFront">
+                        <h2>{{ recipe['title'] }}</h2>
+                        <img src="{{ recipe['image'] }}" alt="Card Image">
+                    </div>
+                    <div class="theBack">
+                        <h1>Malzemeler: </h1>
+                        <ul class="no-bullets">
+                            {% for ingridient in recipe_ingridients %}
+                            {% if ingridient['recipe_id'] == recipe['recipe_id'] %}
+                            <li>{{ ingridient['count'] }} {{ ingridient['ingridient_name']}}</li>
+                            {% endif %}
+                            {% endfor %}
+                        </ul>
+                        <h1>Tarifin yapılışı: </h1>
+                        <p>{{ recipe['description'] }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

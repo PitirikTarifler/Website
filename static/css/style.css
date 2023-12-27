@@ -1,0 +1,1027 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+:root{
+  --red:#F23E2E;
+}
+
+
+*{
+    font-family: 'Nunito', sans-serif;
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+    outline: none; border: none;
+    text-decoration: none;
+    transition: all .2s linear;
+}
+
+*::selection{
+    background: var(--red);
+    color: white;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 6rem;
+    scroll-behavior: smooth;
+}
+
+section{
+    padding: 2rem 9%;
+}
+
+.heading{
+    text-align: center;
+    padding: 2.5rem 0;
+    text-transform: capitalize;
+}
+
+.heading span{
+    font-size: 3.5rem;
+    background: rgba(255,165, 0, .2);
+    color: var(--red);
+    border-radius: .5rem;
+    padding: .2rem 1rem;
+    font-language-override: unset;
+}
+
+.btn{
+    display: inline-block;
+    margin-top: 1rem;
+    background: var(--red);
+    color: #fff;
+    padding: .8rem 3rem;
+    border: .2rem solid var(--red);
+    cursor: pointer;
+    font-size: 1.7rem;
+}
+
+.btn:hover{
+    background: rgba(255,165, 0, .2);
+    color: var(--red);
+}
+
+header{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: #333;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9%;
+}
+
+header .logo img{
+    height: 5rem;
+}
+
+header .navbar a{
+    color: white;
+    font-size: 2rem;
+    margin: 0 .8rem;
+}
+
+header .navbar a:hover {
+    color: var(--red);
+}
+
+header .icons i{
+    font-size: 2.5rem;
+    color: white;
+    cursor: pointer;
+    margin-right: 2rem;
+}
+
+header .icons i:hover {
+    color: var(--red);
+}
+
+header .search-bar-container{
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    padding: 1.5rem 2rem;
+    background: #333;
+    border-top: .1rem solid rgba(255, 255, 255, .2);
+    display: flex;
+    align-items: center;
+    z-index: 1001;
+    clip-path: polygon(0 0,100% 0,100% 0,0 0);
+}
+
+header .search-bar-container.active{
+    clip-path: polygon(0 0,100% 0,100% 100%,0 100%);
+
+}
+
+header .search-bar-container #search-bar{
+    width: 100%;
+    padding: 1rem;
+    text-transform: none;
+    color: #333;
+    font-size: 1.7rem;
+}
+
+header .search-bar-container label{
+    color: white;
+    cursor: pointer;
+    font-size: 3rem;
+    margin-left: 1.5rem;
+}
+
+header .search-bar-container label:hover{
+    color: var(--red);
+}
+/*.sign_in{
+    position: fixed;
+    top: -120%; left: 0;
+    z-index: 10000;
+    min-height: 100vh;
+    width: 100%;
+    background: rgba(0, 0, 0, .7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+*/
+
+.sign_in.sign-in-block.active{
+    top: 0;
+}
+
+.sign_in .sign-in-block form{
+    margin: 2rem;
+    padding: 1.5rem 2rem;
+    border-radius: .5rem;
+    background: #fff;
+    width: 50rem;
+
+}
+
+.sign_in .sign-in-block .box{
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.7rem;
+    color: #333;
+    margin: .6rem 0;
+    border: .1rem solid rgba(0,0,0,.3);
+    text-transform: none;
+}
+
+.sign_in .sign-in-block .box:focus{
+    border-color: var(--red);;
+}
+
+.sign_in .sign-in-block #remember{
+    margin: 2rem 0;
+}
+
+.sign_in .sign-in-block label{
+    font-size: 1.5rem;
+}
+
+.sign_in .sign-in-block .btn{
+    display: block;
+    width: 100%;
+}
+
+.sign_in .sign-in-block p{
+    padding: .5rem 0;
+    font-size: 1.5rem;
+    color: #666;
+}
+
+.sign_in .sign-in-block p a{
+    color: var(--red);
+}
+
+.sign_in .sign-in-block p a:hover{
+    color: #333;
+    text-decoration: underline;
+}
+
+/*-------*/
+
+.sign_up.sign-up-block.active{
+    top: 0;
+}
+
+.sign_up .sign-up-block{
+    margin: 2rem;
+    padding: 1.5rem 2rem;
+    border-radius: .5rem;
+    background: #fff;
+    width: 50rem;
+}
+
+.sign_up .sign-up-block .box{
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.7rem;
+    color: #333;
+    margin: .6rem 0;
+    border: .1rem solid rgba(0,0,0,.3);
+    text-transform: none;
+}
+
+.sign_up .sign-up-block .box:focus{
+    border-color: var(--red);;
+}
+
+.sign_up .sign-up-block #remember{
+    margin: 2rem 0;
+}
+
+.sign_up .sign-up-block label{
+    font-size: 1.5rem;
+}
+
+.sign_up .sign-up-block .btn{
+    display: block;
+    width: 100%;
+}
+
+.sign_up .sign-up-block p{
+    padding: .5rem 0;
+    font-size: 1.5rem;
+    color: #666;
+}
+
+.sign_up .sign-up-block p a{
+    color: var(--red);
+}
+
+.sign_up .sign-up-block p a:hover{
+    color: #333;
+    text-decoration: underline;
+}
+
+#menu-bar{
+    color: #fff;
+    border: .1rem solid #fff;
+    border-radius: .5rem;
+    font-size: 3rem;
+    padding: .5rem 1.2rem;
+    cursor: pointer;
+    display: none;
+}
+
+.home{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    position: relative;
+    z-index: 0;
+}
+
+.home .content{
+    text-align: center;
+}
+
+.home .content h3{
+    font-size: 4.5rem;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 0 .3rem .5rem rgba(0, 0, 0, .1);
+}
+
+.home .content p{
+    font-size: 2.5rem;
+    color: #fff;
+    padding: .5rem 0;
+}
+
+.home .video-container video{
+    position: absolute;
+    top: 0; left: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.home .controls{
+    padding: 1rem;
+    border-radius: 5rem;
+    background: rgba(0, 0, 0, .7);
+    position: relative;
+    top: 10rem;
+}
+
+.home .controls .vid-btn{
+    height: 2rem;
+    width: 2rem;
+    display: inline-block;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    margin: 0 .5rem;
+}
+
+.home .controls .vid-btn.active{
+    background: var(--red);
+}
+
+.suggestions .row-menu{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.suggestions .row-menu .image{
+    flex: 1 1 35rem;
+}
+
+.suggestions .row-menu .image img{
+    width: 100%;    
+}
+
+.suggestions .row-menu form{
+    flex: 1 1 50rem;
+    padding: 2rem;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+    border-radius: .5rem;
+}
+
+.suggestions .row-menu form .inputBox{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.suggestions .row-menu form .inputBox input, .suggestions .row-menu form textarea{
+    width: 49%;
+    margin: 1rem 0;
+    padding: 1rem;
+    font-size: 1.7rem;
+    color: #333;
+    background: #f7f7f7;
+    text-transform: none;
+}
+
+.suggestions .row-menu form textarea{
+    height: 15rem;
+    resize: none;
+    width: 100%;
+
+}
+
+.aboutUs .row-menu{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.aboutUs .row-menu .image{
+    flex: 1 1 35rem;
+
+}
+
+.aboutUs .row-menu .image img{
+    width: 100%;    
+}
+
+.aboutUs .row-menu .text{
+    flex: 1 1 50rem;
+    padding: 2rem;
+    margin: 2rem;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+    border-radius: .5rem;
+    font-size: 1.5rem;
+    text-transform: none;
+}
+
+.aboutUs .row-menu .text h1{
+    color: var(--red);
+}
+
+.footer{
+    background: #333;
+}
+
+.footer .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.footer .box-container .box{
+    padding: 1rem 0;
+    flex: 1 1 25rem;
+}
+
+.footer .box-container .box h3{
+    font-size: 2.5rem;
+    padding: .7rem 0;
+    color: #fff;
+}
+
+.footer .box-container .box p{
+    font-size: 1.5rem;
+    padding: .7rem 0;
+    color: #eee;
+}
+
+.footer .box-container .box a{
+    display: block;
+    font-size: 1.5rem;
+    padding: .7rem 0;
+    color: #eee;
+}
+
+.footer .box-container .box a:hover{
+    color: var(--red);
+    text-decoration: underline;
+}
+
+.footer .credit{
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 1rem;
+    font-size: 2rem;
+    font-weight: normal;
+    color: #fff;
+    border-top: .1rem solid rgba(255, 255, 255, .2);
+}
+
+.footer .credit span{
+   color: var(--red); 
+}
+.tarif-category , .faq, .kitchen, .profile, .sign_in, .sign_up{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    position: relative;
+    z-index: 0;
+}
+.kitchen{
+    margin-top: 50px;
+}
+
+.kitchen-content{
+    margin-top:10px;
+    margin-bottom: 5px;
+    position: relative;
+    display: flex;
+    border : 2px solid #333;
+    width: 600px;
+    overflow-y: scroll;
+    height: 170px;
+}
+.kitchen-content h1{
+    padding-top: 5px;
+    padding-left:15px;
+    font-size:20px;
+}
+
+.kitchen .add-drop-panel{
+    margin-top:10px;
+    display: flex;
+}
+.kitchen .add-drop-buttons{
+    font-size: 15px;
+    margin-left: 5px;
+    color: white;
+    width:20px;
+    background-color: var(--red);
+    height: 20px;
+    cursor: pointer;
+}
+.ingridients{
+    display: absolute;
+}
+
+.ingridient-recipes{
+    margin-top:10px;
+    margin-bottom: 5px;
+    position: relative;
+    display: flex;
+    width: 600px;
+    height: 170px;
+}
+.ingridient-recipes h1{
+    padding-top:10px;
+    font-size:25px;
+
+}
+
+.profile-content{
+    margin-top:10px;
+    margin-bottom: 5px;
+    position: relative;
+    display: block;
+    border : 2px solid #333;
+    width: 600px;
+    height: 200px;
+}
+.profile-content h1{
+    padding-top: 20px;
+    padding-left:15px;
+    font-size:20px;
+}
+.profile-content p{
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    font-size: 15px;
+}
+.close-button{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 5px 10px;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    font-size: 50px;
+    cursor: pointer;
+}
+
+.ingredientAdd-container{
+    position: fixed;
+    top: -120%; left: 0;
+    z-index: 10000;
+    min-height: 100vh;
+    width: 100%;
+    background: rgba(0, 0, 0, .7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ingredientAdd-container.active{
+    top: 0;
+}
+
+.ingredientAdd-container form{
+    margin: 2rem;
+    padding: 1.5rem 2rem;
+    border-radius: .5rem;
+    background: #fff;
+    width: 60rem;
+    height: 40rem;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+}
+
+.ingredientAdd-container form h1{
+    font-size: 3rem;
+    color: #444;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1rem 0;
+}
+.ingredientAdd-container .add-drop-buttons{
+    font-size: 15px;
+    margin-left: 5px;
+    color: white;
+    width:20px;
+    background-color: var(--red);
+    height: 20px;
+    cursor: pointer;
+}
+
+.ingredientAdd-container form .box:focus{
+    border-color: var(--red);;
+}
+
+.ingredientAdd-container form #remember{
+    margin: 2rem 0;
+}
+
+.ingredientAdd-container form p{
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.ingredientAdd-container form .btn{
+    display: block;
+    width: 100%;
+}
+
+#formAdd {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ingredientAdd-container form table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.ingredientAdd-container form table th{
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    background-color: #f2f2f2;
+    font-size: 14px;
+
+}
+
+.ingredientAdd-container form table td{
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    font-size: 13px;
+}
+
+.ingredientAdd-container form .btn-container{
+    display: flex;
+    justify-content: space-between;
+}
+.increase-btn, .decrease-btn{
+    font-size: 15px;
+    margin-left: 5px;
+    color: white;
+    width:20px;
+    background-color: var(--red);
+    height: 20px;
+    cursor: pointer;
+}
+
+
+.ingredientDrop-container{
+    position: fixed;
+    top: -120%; left: 0;
+    z-index: 10000;
+    min-height: 100vh;
+    width: 100%;
+    background: rgba(0, 0, 0, .7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ingredientDrop-container.active{
+    top: 0;
+}
+
+.ingredientDrop-container form{
+    margin: 2rem;
+    padding: 1.5rem 2rem;
+    border-radius: .5rem;
+    background: #fff;
+    width: 60rem;
+    height: 40rem;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+}
+
+.ingredientDrop-container form h1{
+    font-size: 3rem;
+    color: #444;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1rem 0;
+}
+.ingredientDrop-container .add-drop-buttons{
+    font-size: 15px;
+    margin-left: 5px;
+    color: white;
+    width:20px;
+    background-color: var(--red);
+    height: 20px;
+    cursor: pointer;
+}
+
+.ingredientDrop-container form .box:focus{
+    border-color: var(--red);;
+}
+
+.ingredientDrop-container form #remember{
+    margin: 2rem 0;
+}
+
+.ingredientDrop-container form p{
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.ingredientDrop-container form .btn{
+    display: block;
+    width: 100%;
+}
+
+#formDrop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ingredientDrop-container form table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.ingredientDrop-container form table th{
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    background-color: #f2f2f2;
+    font-size: 14px;
+
+}
+
+.ingredientDrop-container form table td{
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    font-size: 13px;
+}
+
+.ingredientDrop-container form .btn-container{
+    display: flex;
+    justify-content: space-between;
+}
+.no-bullets {
+    list-style-type: none;
+    color: black;
+    font-size: 14px;
+}
+.owned-list{
+    font-size: 15px;
+}
+.details .heading{
+    margin-top: 110px;
+}
+
+.cardContainer{
+    margin-top: 70px;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 400px); 
+    grid-auto-rows: 500px; 
+    gap: 50px; 
+    margin-bottom: 20px;
+}
+
+
+.theCard{
+    transform-style: preserve-3d;
+    transition: all 1s ease;
+    border-radius: 25px;
+    border: .1rem solid var(--red);
+    box-sizing: border-box;
+    text-align: center;
+    padding: 20px;
+}
+
+.theCard img{
+    position: absolute;
+    width: 100%;
+    height: 75%;
+    border-radius: 25px;
+    bottom: 0;
+    left: 0;
+}
+
+.theCard h2{
+    margin-top: 30px;
+    color: white;
+}
+
+.theBack h1{
+    font-size: 18px;
+    margin-top: 10px;
+}
+.theBack p{
+    text-align: center;
+    margin-left:30px;
+    margin-right: 30px;
+}
+.theCard p{
+    color: #333;
+    font-size: 16px;
+}
+
+.theCard:hover{
+    transform: rotateY(180deg);
+}
+
+.theFront{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background: var(--red);
+    color: #333;
+    text-align: center;
+    font-family:Arial, Helvetica, sans-serif;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    bottom: 0;
+    left: 0;
+}
+
+.theBack{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background: rgba(255,165, 0, .2);
+    color: var(--red);
+    transform: rotateY(180deg);
+    text-align: center;
+    font-family:Arial, Helvetica, sans-serif;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    bottom: 0;
+    right: 0;
+}
+.todaysmenu .heading{
+    margin-top: 100px;
+    margin-bottom: 40px;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.row {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.row span{
+    color: var(--red);
+}
+
+.row img{
+    height: 250px;
+    width: 350px;
+    border-radius: 20px;
+}
+
+.block {
+    width: 685px; 
+    height: 400px; 
+    margin: 10px; 
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 20px;
+    align-items: flex-start;
+    position: relative;
+
+}
+
+.block h1{
+    margin-top: 15px;
+    font-size: x-large;
+}
+
+
+.block ul{
+    position: absolute;
+    top: 80%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    font-size: small;
+}
+
+.middle ul{
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    font-size: medium;
+}
+
+.block p{
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    font-size: medium;
+}
+
+.upper {
+    background-color: white; /* Üst blokların arkaplan rengi */
+}
+
+.middle {
+    background-color: white; /* Orta bloğun arkaplan rengi */
+    width: 1380px;
+}
+
+.lower {
+    background-color: white; /* Alt blokların arkaplan rengi */
+}
+.table-container{
+    overflow-y: scroll;
+    width:580px;
+}
+.faq-content{
+    margin-top:10px;
+    margin-bottom: 5px;
+    position: relative;
+    display: block;
+    width: 800px;
+}
+.faq-content h2{
+    padding-top: 20px;
+    padding-left:15px;
+    font-size:20px;
+}
+.faq-content p{
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 15px;
+    font-size: 14px;
+}
+#user-recipes{
+    margin-top: 15px;
+    font-size: 25px;
+}
+
+
+/* media queries */
+
+@media (max-width:1200px) {
+
+    html{
+        font-size: 55%;
+    }
+
+}
+
+@media (max-width:991px) {
+
+    header{
+        padding: 2rem;
+    }
+
+    section{
+        padding: 2rem;
+    }
+}
+
+@media (max-width:768px) {
+
+    #menu-bar{
+        display: initial;
+    }
+
+    header .navbar{
+        position: absolute;
+        top: 100%; right: 0; left: 0;
+        background: #333;
+        border-top: .1rem solid rgba(255, 255, 255, .2);
+        padding: 1rem 2rem;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+    header .navbar.active{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    header .navbar a{
+        display: block;
+        border-radius: .5rem;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        background: #222;
+    }
+}
+
+@media (max-width:450px) {
+
+    html{
+        font-size: 50%;
+    }
+
+    .heading span{
+        font-size: 2.5rem;
+    }
+
+    .suggestions .row form .inputBox input{
+        width: 100%;
+    }
+
+}
+
+
+

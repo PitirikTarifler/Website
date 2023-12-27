@@ -1,0 +1,90 @@
+{% extends 'layout.html' %}
+{% block title %} Yöresel {% endblock %}
+{% block style %} 
+<style>
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1px;
+}
+
+.kutu, .altDiv{
+    background-color: rgb(226, 223, 223);
+    border-radius: 25px;
+    border: 4px solid var(--red);
+    width: 250px;
+    height: 250px;
+    margin: 50px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+    justify-content: center;
+
+}
+
+.kutu-1{
+    background-image: url(../static/images/muhlama.jpeg);
+    background-size: cover;
+    color: white;
+}
+
+.kutu-2{
+    background-image: url(../static/images/yapraksarma.jpeg);
+    background-size: cover;
+    color: white;
+}
+
+.kutu-3{
+    background-image: url(../static/images/akdeniz.webp);
+    background-size: cover;
+    color: white;
+}
+
+.altDiv-1{
+    background-image: url(../static/images/kebab.jpg);
+    background-size: cover;
+    color: white;
+}
+
+.altDiv-2{
+    background-image: url(../static/images/iç-anadolu.jpeg);
+    background-size: cover;
+    color: white;
+}
+</style>
+{% endblock %}
+{% block content %}
+    <h1 style="margin-top: 150px;" class="heading">
+        <span>y</span>
+        <span>ö</span>
+        <span>r</span>
+        <span>e</span>
+        <span>s</span>
+        <span>e</span>
+        <span>l</span>
+        <br><br>
+        <span>t</span> 
+        <span>a</span>
+        <span>r</span>
+        <span lang="tr">i</span>
+        <span>f</span>
+        <span>l</span>
+        <span>e</span>
+        <span>r</span>
+    </h1>
+    </center>
+         <div class="container">
+         <a href="{{ url_for('yoresel_category', region='karadeniz') }}"><div class="kutu kutu-1">Karadeniz Yemekleri</div></a>
+         <a href="{{ url_for('yoresel_category', region='ege') }}"><div class="kutu kutu-2">Ege Yemekleri</div></a>
+         <a href="{{ url_for('yoresel_category', region='akdeniz') }}"><div class="kutu kutu-3">Akdeniz Yemekleri</div></a>
+        </div>
+    
+        <div class="container">
+            <a href="{{ url_for('yoresel_category', region='doğu') }}"><div class="altDiv altDiv-1">Doğu Yemekleri</div>
+                <a href="{{ url_for('yoresel_category', region='iç-anadolu') }}"><div class="altDiv altDiv-2">İç Anadolu Yemekleri</div>
+        </div>
+{% endblock content %}

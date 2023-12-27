@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+{% block title %} Üye Ol {% endblock %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        {% for msg in messages %}
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hay Aksi...',
+                    text: '{{ msg }}',
+                });
+            });
+        </script>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<section class="sign_up">
+        <h1 class="heading" style="margin-top: 75px;">    
+            <span>ü</span>
+            <span>y</span>
+            <span>e</span>
+            <br><br>
+            <span>o</span>
+            <span>l</span>
+        </h1>
+        
+        <form method="POST" class="sign-up-block" id="signup-form">
+            <input type="text" required class="box" pattern="[A-Za-zğüşıöçĞÜŞİÖÇ\s]+" name="name" placeholder="İsminizi giriniz.">
+            <input type="text"  required class="box" pattern="[A-Za-zğüşıöçĞÜŞİÖÇ\s]+" name="surname" placeholder="Soyadınızı giriniz.">
+            <input type="email" required class="box" name="email" placeholder="E-mail adresinizi giriniz.">
+            <input type="password"  required class="box" name="password" placeholder="Şifrenizi giriniz.">
+            <input type="password"  pattern=".{8,}" required class="box" name="repassword" placeholder="Şifrenizi yeniden giriniz.">
+            <input type="submit" value="Üye Ol" class="btn">
+            <p>Zaten üye misiniz? <a href="{{ url_for('login') }}" id="login-return">Şimdi giriş yap</a></p>  
+        </form>
+</section>
+{% endblock %}

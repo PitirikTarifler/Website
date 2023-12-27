@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Your Flask App {% endblock %}</title>
+    
+    <!-- font awesome cn link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    {% block style %} {% endblock %}
+    <!-- custom css file link -->
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <header>
+
+        <div id="menu-bar" class="fas fa-bars"></div>
+    
+    
+        <a href="{{ url_for('home') }}" class="logo"><img src="../static/images/logoname.png" alt="Logo"></a>
+    
+        <nav class="navbar">
+            <a href="{{ url_for('tarifler') }}">Tarifler</a>
+            <a href="{{ url_for('todaysmenu')}}">Günün Menüsü</a>
+            {% if session["user_id"] %}
+            <a href="{{ url_for('dolabım') }}">Dolabım</a>
+            {% endif %}
+            <a href="{{ url_for('yoresel') }}">Yöresel</a>
+    
+        </nav>
+        <div class="icons">
+            <i class="fas fa-search" id="search-btn"></i>
+            {% if session["user_id"] %}
+            <a href="{{ url_for('profil') }}"><i class="fas fa-user" id="profile-btn"></i></a>
+            <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt" id="sign-out-btn"></i></a>
+            {% else %}
+            <a href="{{ url_for('login') }}"><i class="fas fa-user" id="sign-in-btn"></i></a>
+            {% endif %}
+        </div>
+    
+        <form action="" class="search-bar-container">
+            <input type="search" id="search-bar" placeholder="Buradan ara..">
+            <label for="search-bar" class="fas fa-search"></label>
+        </form>
+    
+    </header>
+    <div class="content">
+        {% block content %} {% endblock %}
+    </div>
+    
+<!-- footer section starts -->
+
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3>Hakkımızda</h3>
+            <p>Pıtırık Tarifler, lezzetli yemekleri keşfetmeyi ve mutfak deneyimini herkes için keyifli hale getirmeyi amaçlayan bir platformdur.</p>
+        </div>
+        <div class="box">
+            <h3>İletişim Bilgileri</h3>
+            <p>E-mail adresi: pitiriktarifler@hotmail.com</p>
+        </div>
+        <div class="box">
+            <h3>Bizi Takip Edin</h3>
+            <a href="#">facebook</a>
+            <a href="https://www.instagram.com/pitiriktarifler/">instagram</a>
+            <a href="https://twitter.com/pitiriktarifler">twitter</a>
+            <a href="#">linkedin</a>
+            <a href="#">youtube</a>
+        </div>
+        <div class="box">
+            <h3>Sık Sorulan Sorular(SSS)</h3>
+            <a href="{{ url_for('sss') }}">Buraya tıklayınız</a>
+        </div>
+
+    </div>
+    <footer class="credit"> created by <span> Celal Deniz Sinop, Emin Yalın, 
+        Nisa Vapurlu, Olcay Tutan, Sena Şimşek</span>| all rights reserved!</footer>
+</section>
+<!-- custom js file link -->
+{% block script %} {% endblock %}
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

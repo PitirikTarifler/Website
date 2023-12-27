@@ -1,0 +1,119 @@
+{% extends 'layout.html' %}
+{% block title %} Tarifler {% endblock %}
+{% block style %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+    :root {
+        --red: #F23E2E;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Nunito', sans-serif;
+    }
+
+    body {
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+    }
+
+    .card {
+        border-radius: 25px;
+        width: 270px;
+        background-color: var(--red);
+    }
+
+    .image-content,
+    .card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 3px;
+
+    }
+
+    .card-content {
+        padding-bottom: 15px;
+    }
+
+    .card-image {
+        position: relative;
+        height: 180px;
+        width: 250px;
+        border-radius: 20%;
+        background: var(--red);
+        padding: 3px;
+    }
+
+    .image-content {
+        row-gap: 5px;
+    }
+
+    .card-image .card-img {
+        height: 100%;
+        width: 100%;
+        border-radius: 20%;
+        object-fit: cover;
+        border: 3px solid var(--red);
+    }
+
+    .name {
+        font-size: 28px;
+        font-weight: 1000;
+        color: white;
+    }
+
+    .description {
+        margin-top: 5px;
+        font-size: 14px;
+        color: #333;
+        opacity: 0.5;
+        text-align: center;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<section class="tarif-category">
+    <h1 class="heading" style="margin-top:150px;">
+        {% for letter in region %}
+        <span>{{ letter }}</span>
+        {% endfor %}
+        <br><br>
+        <span>Y</span>
+        <span>E</span>
+        <span>M</span>
+        <span>E</span>
+        <span>K</span>
+        <span>L</span>
+        <span>E</span>
+        <span>R</span>
+        <span>İ</span>
+    </h1>
+    <div class="cardContainer">
+        {% for recipe in recipes %}
+        <div class="theCard">
+            <div class="theFront">
+                <h2>{{ recipe['title'] }}</h2>
+                <img src="{{ recipe['image'] }}" alt="Card Image">
+            </div>
+            <div class="theBack">
+                <h1>Malzemeler: </h1>
+                <ul class="no-bullets">
+                    {% for ingridient in recipe_ingridients %}
+                    {% if ingridient['recipe_id'] == recipe['recipe_id'] %}
+                    <li>{{ ingridient['count'] }} {{ ingridient['ingridient_name']}}</li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+                <h1>Tarifin yapılışı: </h1>
+                <p>{{ recipe['description'] }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

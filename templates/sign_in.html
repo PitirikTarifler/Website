@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% block title %} Üye Ol {% endblock %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        {% for msg in messages %}
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hay Aksi...',
+                    text: '{{ msg }}',
+                });
+            });
+        </script>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<section class="sign_in">
+        <h1 class="heading">    
+            <span>g</span>
+            <span lang="tr">i</span>
+            <span>r</span>
+            <span lang="tr">i</span>
+            <span>ş</span>
+            <br><br>
+            <span>y</span>
+            <span>a</span>
+            <span>p</span>
+        </h1>
+        
+        <form method="POST" class="sign-in-block">
+            <input type="email" class="box" name="email" required placeholder="E-mail adresinizi giriniz.">
+            <input type="password" required class="box" name="password" placeholder="Şifrenizi giriniz.">
+            <input type="submit" value="Giriş Yap" class="btn">
+            <input type="checkbox" id="remember">
+            <label for="remember">Bilgilerimi hatırla</label>
+            <p>Şifrenizi mi unuttunuz? <a href="#">Buraya tıklayınız</a></p>
+            <p>Henüz üye değil misiniz? <a href="{{ url_for('signup') }}" id="sign-up-btn">Şimdi üye ol</a></p>   
+        </form>
+</section>
+
+{% endblock %}
+
+

@@ -1,0 +1,226 @@
+{% extends 'layout.html' %}
+{% block title %}Dolabım{% endblock %}
+{% block content %}
+<!-- ingredients form add container -->
+<div class="ingredientAdd-container">
+    <button class="close-button" id="form-add-close">&times;</button>
+    <form action="/dolabım" method="POST" id="formAdd">
+        <div class="table-container">
+        <table>
+            <tr class="add-row">
+                <th>Malzeme</th>
+                <th>Miktar</th>
+            </tr>
+            {% for ingridient in ingridients %}
+            <tr class="add-row">
+                <td class="ingridient_name">{{ ingridient['ingridient_name'] }}</td>
+                <td class="btn-container">
+                    <button data-action-type="addToKitchen" class="increase-btn">+</button>
+                    <span class="number">0</span>
+                    <button class="decrease-btn">-</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+        <input type="submit" value="Dolabıma Ekle" class="btn" onclick="add_ingridients()">
+    </form>
+</div>
+
+
+<!-- ingredients form drop container -->
+<div class="ingredientDrop-container">
+    <button class="close-button" id="form-drop-close">&times;</button>
+    <form action="/dolabım" method="POST" id="formDrop">
+        <div class="table-container">
+            <table>
+                <tr class="remove-row">
+                    <th>Malzemeler</th>
+                    <th>Miktar</th>
+                </tr>
+                {% for owned in owned_ingridients %}
+                <tr class="remove-row">
+                    <td> {{ owned['ingridient_name'] }}</td>
+                    <td class="btn-container">
+                        <button data-max-quantity="{{ owned['count'] }}" data-action-type="removeFromKitchen"
+                            class="increase-btn">+</button>
+                        <span class="number">0</span>
+                        <button class="decrease-btn">-</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <input type="submit" value="Dolabımdan Çıkar" class="btn" onclick="remove_ingridients()">
+    </form>
+</div>
+
+<section class="kitchen">
+    <h1 class="heading" style="margin-top: 75px;">
+        <span>d</span>
+        <span>o</span>
+        <span>l</span>
+        <span>a</span>
+        <span>b</span>
+        <span>ı</span>
+        <span>m</span></h1>
+    <div class="kitchen-content">
+        <h1 class="ingridient-title">Malzemeler<h1>
+                <div class="ingridients">
+                    <ul class="no-bullets">
+                        {% for owned in owned_ingridients %}
+                        <li>{{ owned['ingridient_name'] }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+    </div>
+    <div class="add-drop-panel">
+        <h1>Malzeme</h1>
+        <button class="add-drop-buttons" id="add-btn">+</button>
+        <button class="add-drop-buttons" id="drop-btn">-</button>
+    </div>
+    <h1 id="user-recipes">Elinde Bulunan Malzemelere Göre Tarifler!</h1>
+        <div class="cardContainer">
+            {% for recipe in user_recipes %}
+                <div class="theCard">
+                    <div class="theFront">
+                        <h2>{{ recipe['title'] }}</h2>
+                        <img src="{{ recipe['image'] }}" alt="Card Image">
+                    </div>
+                    <div class="theBack">
+                        <h1>Malzemeler: </h1>
+                        <ul class="no-bullets">
+                            {% for ingridient in recipe_ingridients %}
+                            {% if ingridient['recipe_id'] == recipe['recipe_id'] %}
+                            <li>{{ ingridient['count'] }} {{ ingridient['ingridient_name']}}</li>
+                            {% endif %}
+                            {% endfor %}
+                        </ul>
+                        <h1>Tarifin yapılışı: </h1>
+                        <p>{{ recipe['description'] }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+</section>
+{% endblock %}
+{% block script %}
+<script>
+    async function add_ingridients() {
+        const fetchPromises = [];
+        document.querySelectorAll('.add-row').forEach(row => {
+            event.preventDefault();
+            let ingredientNameElement = row.querySelector('td:first-child');
+            var quantityElement = row.querySelector('.number');
+
+            // Check if the elements are found before accessing properties
+            if (ingredientNameElement && quantityElement) {
+                let ingredientName = ingredientNameElement.innerText;
+                let quantity = parseInt(quantityElement.innerText);
+
+                quantityElement.innerHTML = 0;
+                // Store the counts in the entry object
+                if (quantity !== 0) {
+                    var entry = {
+                        "ingridient_name": ingredientName,
+                        "count": quantity
+                    };
+
+                    fetchPromises.push(
+                        fetch(`${window.origin}/dolabım/add_ingridient`, {
+                            method: "POST",
+                            credentials: "include",
+                            body: JSON.stringify([entry]),
+                            cache: "no-cache",
+                            headers: new Headers({
+                                "content-type": "application/json"
+                            })
+                        })
+                        .then(function (response) {
+                            if (response.status !== 200) {
+                                console.log(`Response status was not 200": ${response.status}`)
+                                return;
+                            }
+                            response.json().then(function (data) {
+                                console.log(data);
+                            })
+                        })
+                    );
+                }
+            }
+        });
+        await Promise.all(fetchPromises);
+
+        location.reload();
+    }
+
+    async function remove_ingridients() {
+        const fetchPromises = [];
+        document.querySelectorAll('.remove-row').forEach(row => {
+            event.preventDefault();
+            let owned_ingridient_element = row.querySelector('td:first-child')
+            let quantity_element = row.querySelector('.number')
+
+            if (owned_ingridient_element && quantity_element) {
+                let ingridient_name = owned_ingridient_element.innerText;
+                let count = parseInt(quantity_element.innerText);
+
+                quantity_element.innerHTML = 0;
+
+                if (count !== 0) {
+                    var entry = {
+                        "ingridient_name": ingridient_name,
+                        "count": count
+                    };
+
+                    fetchPromises.push(
+                        fetch(`${window.origin}/dolabım/remove_ingridient`, {
+                            method: "POST",
+                            credentials: "include",
+                            body: JSON.stringify([entry]),
+                            cache: "no-cache",
+                            headers: new Headers({
+                                "content-type": "application/json"
+                            })
+                        })
+                        .then(function (response) {
+                            if (response.status !== 200) {
+                                console.log(`Response status was not 200": ${response.status}`)
+                                return;
+                            }
+                            response.json().then(function (data) {
+                                console.log(data);
+                            })
+                        })
+                    );
+                }
+            }
+        });
+        await Promise.all(fetchPromises);
+
+        location.reload()
+    }
+    let increaseBttns = document.querySelectorAll('.increase-btn')
+    increaseBttns.forEach(button => {
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+            var maxQuantity = parseInt(this.getAttribute('data-max-quantity'));
+            var number = this.parentElement.querySelector('.number');
+            var ingridient_name = this.parentElement.querySelector('.ingridient_name');
+
+            let currentNum = parseInt(number.innerHTML);
+            var action_type = this.getAttribute('data-action-type');
+            if (action_type == 'addToKitchen') {
+                if (currentNum >= 0) {
+                    number.innerHTML = currentNum + 1;
+                }
+            } else if (action_type == 'removeFromKitchen') {
+                if (currentNum >= 0 && currentNum < maxQuantity) {
+                    number.innerHTML = currentNum + 1;
+                }
+            }
+
+        });
+    });
+</script>
+{% endblock %}

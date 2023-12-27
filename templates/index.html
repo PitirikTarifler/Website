@@ -1,0 +1,142 @@
+{% extends 'layout.html' %}
+{% block title %}Pıtırık Tarifler{% endblock %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        {% for msg in messages %}
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Üzgünüz.. :(',
+                    text: '{{ msg }}',
+                });
+            });
+        </script>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<section class="home" id="home">
+
+    <div class="content">
+        <h3>Pıtırık tarifler'e hoşgeldin {{ name }} !</h3>
+        <p>Sen de dolabına ürün eklemeye başla!</p>
+        {% if session["user_id"] %}
+        <a href=" {{ url_for('dolabım') }}" class="btn">Şimdi başla</a>
+        {% else %}
+        <a href=" {{ url_for('login') }} " class="btn">Şimdi başla</a>
+        {% endif %}
+    </div>
+
+    <div class="controls">
+        <span class="vid-btn active" data-src="../static/images/vid-1.mp4"></span>
+        <span class="vid-btn" data-src="../static/images/vid-2.mp4"></span>
+        <span class="vid-btn" data-src="../static/images/vid-3.mp4"></span>
+    </div>
+
+    <div class="video-container">
+        <video src="../static/images/vid-1.mp4" id="video-slider" loop autoplay muted></video>
+    </div>
+
+
+</section>
+
+<!-- home section ends -->
+
+<!-- about us section starts -->
+<section class="aboutUs">
+    <h1 class="heading">
+        <span>h</span>
+        <span>a</span>
+        <span>k</span>
+        <span>k</span>
+        <span>ı</span>
+        <span>m</span>
+        <span>ı</span>
+        <span>z</span>
+        <span>d</span>
+        <span>a</span>
+    </h1>
+    <div class="row-menu">
+        <div class="image">
+            <img src="../static/images/logoWithoutBackgorund.png" alt="">
+        </div>
+        <div class="text">
+            <h1>Pıtırık Tarifler: Lezzet Dolu Bir Dünya</h1>
+            <p>Hoş geldiniz, Pıtırık Tarifler'in mutfağına! Biz, yemek tutkunları ve lezzet avcıları olarak yola çıktık ve yemeklerin 
+                büyülü dünyasında keşfe çıkmak için buradayız.</p>
+            <h1>Hikayemiz</h1>
+            <p>Pıtırık Tarifler, bir tutkunun, mutfakta yaratıcılığın ve lezzetin bir araya geldiği bir platformdur. Adını, her bir 
+                tarifin içinde gizli olan o eşsiz lezzet anlarından alır.</p>
+            <h1>Misyonumuz</h1>
+            <p>Misyonumuz, mutfak deneyiminizi eğlenceli, basit ve lezzet dolu hale getirmektir. Sağlıklı tariflerden, pratik 
+                önerilere kadar, herkesin mutfakta ustalık kazanmasına yardımcı olmak için buradayız.</p>
+            <h1>Pıtırık Ailesi</h1>
+            <p>Pıtırık Tarifler ekibi, farklı damak tatlarına ve lezzet dünyalarına sahip tutkulu bireylerden oluşuyor. 
+                Her birimiz, mutfağın sihirli dünyasını keşfetmek ve sizinle paylaşmak için buradayız.</p>
+            <h1>Gelecek Hayallerimiz</h1>
+            <p>Gelecekte, daha fazla insanın mutfakta keyifli anlar geçirmesine katkıda bulunmak istiyoruz. Yenilikçi tariflerle, lezzetli sürprizlerle dolu bir dünya yaratmayı hedefliyoruz.
+
+                Pıtırık Tarifler olarak, mutfakta her anınızın keyifli, lezzet dolu ve unutulmaz olmasını istiyoruz. Bize katılın, birlikte bu lezzetli yolculuğa çıkalım!</p>
+        </div>
+    </div>
+</section>
+
+<!-- about us section ends -->
+
+<!-- suggestions section starts -->
+<section class="suggestions">
+    <h1 class="heading">
+        <span>ö</span>
+        <span>n</span>
+        <span>e</span>
+        <span>r</span>
+        <span>i</span>
+        <span>l</span>
+        <span>e</span>
+        <span>r</span>
+        <span>i</span>
+        <span>n</span>
+        <span>i</span>
+        <span>z</span>
+    </h1>
+
+    <div class="row-menu">
+
+        <div class="image">
+            <img src="../static/images/suggestions.jpg" alt="">
+        </div>
+
+        <form method="POST" action="{{ url_for('suggestions_form')}}">
+            <div class="inputBox">
+                <input type="text" name="name" placeholder="isim">
+                <input type="text" name="surname" placeholder="soyad">
+            </div>
+            <div class="inputBox">
+                <input type="email" name="email" placeholder="e-mail">
+            </div>
+            <textarea placeholder="Mesaj" name="message" id="" cols="30" rows="10"></textarea>
+            <input type="submit" class="btn" value="Gönder">
+        </form>
+    </div>
+
+
+</section>
+
+{% endblock %}
+{% block script %}
+<script>
+    let videoBtn = document.querySelectorAll('.vid-btn');
+
+    videoBtn.forEach(btn =>{
+        btn.addEventListener('click', function(event){
+            console.log('Button clicked');
+            document.querySelector('.controls .active').classList.remove('active');
+            event.target.classList.add('active');
+            let src = event.target.getAttribute('data-src');
+            document.querySelector('#video-slider').src = src;
+        });
+    });
+</script>
+{% endblock %}
